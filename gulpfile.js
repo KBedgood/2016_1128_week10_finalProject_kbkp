@@ -31,13 +31,8 @@ const cssFiles      = 'app/css/**/*.?(s)css';
 const jsFiles       = 'app/js/**/*.js';
 const controllers   = 'app/js/controllers/**/*.js';
 const services     = 'app/js/services/**/*.js';
-
-
-
-
-
-
-
+const directives = 'app/js/directives/**/*.js';
+const vendor = 'app/js/vendor/**/*.js';
 
 // --------------------------------------------------
 // Gulp Task Options
@@ -86,7 +81,7 @@ gulp.task('images', () => {
 
 
 gulp.task('babel', () => {
-  return gulp.src([jsFiles, controllers, services])
+  return gulp.src([jsFiles, controllers, services, directives, vendor])
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(babel({
       presets: ['es2015']
@@ -127,7 +122,7 @@ gulp.task('serve', () => {
 
   gulp.watch(['app/**/*.html', 'app/partials/**/*.html'], ['html'])
   gulp.watch(sassFiles, ['css'])
-  gulp.watch([jsFiles, controllers, services], ['babel']);
+  gulp.watch([jsFiles, controllers, services, directives, vendor], ['babel']);
 });
 
 
