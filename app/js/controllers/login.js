@@ -1,7 +1,7 @@
 angular.module('MyApp')
   .controller('LoginCtrl', function($scope, $location, $auth, toastr) {
-    $scope.login = function() {
-      $auth.login($scope.user)
+    $scope.login = function(provider) {
+      $auth.login()
         .then(function() {
           toastr.success('You have successfully signed in!');
           $location.path('/');
